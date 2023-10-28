@@ -14,7 +14,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp',{
 .catch((err) => {
     console.error(err)
 })
-
+const appp = 12;
 const app = express();
 
 app.use(express.urlencoded({extended: true}))
