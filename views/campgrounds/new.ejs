@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Camp!</title>
+    <style>
+        input {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Add New Camp
+    </h1>
+
+    <form action="/campgrounds" method="post">
+        <div>
+            <label for="title">
+                Title   :
+                <input type="text" id="title" name="Campground[title]">
+            </label>
+        </div>
+        <div>
+            <label for="Location">
+                Location    :
+                <input type="text" id="Location" name="Campground[location]">
+            </label>
+        </div>
+        <button>
+            Add Campground
+        </button>
+    </form>
+</body>
+</html>
