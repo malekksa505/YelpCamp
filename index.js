@@ -1,6 +1,7 @@
 const Camp = require('./models/campground')
 const mongoose = require('mongoose');
 const express = require('express');
+const ejsMate = require('ejs-mate')
 const path = require('path');
 const methodOverride = require('method-override')
 
@@ -14,8 +15,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp',{
 .catch((err) => {
     console.error(err)
 })
-const appp = 12;
+
 const app = express();
+
+app.engine('ejs', ejsMate)
 
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
@@ -25,7 +28,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.get("/campgrounds", async (req,res) => {
     const Camps = await Camp.find({});
-    res.render('campgrounds/index', {Camps});
+    res.render('campgrounds/index', {Camps, title: 'All Camps'});
 });
 
 app.post('/campgrounds', async (req,res) => {
@@ -35,17 +38,17 @@ app.post('/campgrounds', async (req,res) => {
 })
 
 app.get("/campgrounds/new", (req,res) => {
-    res.render('campgrounds/new');
+    res.render('campgrounds/new', {title: 'Add New Camp'});
 })
 
 app.get("/campgrounds/:id", async (req,res) => {
     const campFind = await Camp.findById(req.params.id);
-    res.render('campgrounds/show', { campFind })
+    res.render('campgrounds/show', { campFind, title: 'Detail Camp'})
 });
 
 app.get("/campgrounds/:id/edit", async (req,res) => {
     const campFind = await Camp.findById(req.params.id);
-    res.render('campgrounds/edit', { campFind })
+    res.render('campgrounds/edit', { campFind, title: 'Edit Camp' })
 });
 
 app.put('/campgrounds/:id', async (req,res) => {

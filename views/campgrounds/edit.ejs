@@ -1,37 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Camp!</title>
-    <style>
-        input {
-            margin: 5px;
-        }
-    </style>
-</head>
-<body>
-    <h1>
-        Edit Camp
-    </h1>
+<% layout('layout/boilerplate') %>
 
-    <form action="/campgrounds/<%= campFind._id %>?_method=PUT" method="post">
-        <div>
-            <label for="title">
-                Title   :
-                <input type="text" id="title" name="Campground[title]" value="<%= campFind.title %>">
-            </label>
+    <div class="row">
+        <h1 class="text-center">
+            Edit Campground
+        </h1>
+        <div class="col-6 offset-3">
+            <form action="/campgrounds/<%= campFind._id %>?_method=PUT" method="post">
+                <div class="mb-3">
+                    <label for="title" class="form-label">
+                        Title   :
+                    </label><input class="form-control" type="text" id="title" name="Campground[title]" value="<%= campFind.title %>" >
+                </div>
+                <div class="mb-3">
+                    <label for="Location" class="form-label">
+                        Location    :
+                    </label><input class="form-control" type="text" id="Location" name="Campground[location]" value="<%= campFind.location %>">
+                </div>
+                <div class="mb-3">
+                    <label for="img" class="form-label">
+                        Image URL   :
+                    </label><input class="form-control" type="text" id="img" name="Campground[image]" value="<%= campFind.image %>">
+                </div>
+                <div class="mb-3">
+                    <label for="desc" class="form-label">
+                        Description   :
+                    </label><textarea class="form-control" type="text" id="desc" name="Campground[description]"><%= campFind.description %></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="price">Price :</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input id="price" type="text" class="form-control" placeholder="0.00" name="Campground[price]" value="<%= campFind.price %>" >
+                    </div>
+                  </div>
+                <div class="mb-3">
+                    <button class="btn btn-danger">
+                        Edit Campground
+                    </button>
+                </div>
+            </form>
         </div>
-        <div>
-            <label for="Location">
-                Location    :
-                <input type="text" id="Location" name="Campground[location]" value="<%= campFind.location %>">
-            </label>
-        </div>
-        <button>
-            edit Campground!
-        </button>
-    </form>
-    <a href="/camgrounds/<%= campFind._id %>">back to camp</a>
-</body>
-</html>
+    </div>
