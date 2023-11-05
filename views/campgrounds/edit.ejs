@@ -5,32 +5,52 @@
             Edit Campground
         </h1>
         <div class="col-6 offset-3">
-            <form action="/campgrounds/<%= campFind._id %>?_method=PUT" method="post">
+            <form action="/campgrounds/<%= campFind._id %>?_method=PUT" method="post" novalidate class="needs-validation">
                 <div class="mb-3">
                     <label for="title" class="form-label">
                         Title   :
-                    </label><input class="form-control" type="text" id="title" name="Campground[title]" value="<%= campFind.title %>" >
+                    </label><input class="form-control" type="text" id="title" name="Campground[title]" required value="<%= campFind.title %>" >
+                    <div class="invalid-feedback">
+                        Please select a valid state.
+                      </div><div class="valid-feedback">
+                        Looks good!
+                      </div>
                 </div>
                 <div class="mb-3">
                     <label for="Location" class="form-label">
                         Location    :
-                    </label><input class="form-control" type="text" id="Location" name="Campground[location]" value="<%= campFind.location %>">
+                    </label><input class="form-control" type="text" id="Location" name="Campground[location]" required value="<%= campFind.location %>">
+                    <div class="valid-feedback">
+                    Looks good!
+                  </div>
+
                 </div>
                 <div class="mb-3">
                     <label for="img" class="form-label">
                         Image URL   :
-                    </label><input class="form-control" type="text" id="img" name="Campground[image]" value="<%= campFind.image %>">
+                    </label><input class="form-control" type="text" id="img" name="Campground[image]" required value="<%= campFind.image %>">
+                    <div class="valid-feedback">
+                    Looks good!
+                  </div>
+
                 </div>
                 <div class="mb-3">
                     <label for="desc" class="form-label">
                         Description   :
-                    </label><textarea class="form-control" type="text" id="desc" name="Campground[description]"><%= campFind.description %></textarea>
+                    </label><textarea class="form-control" type="text" id="desc" name="Campground[description]" required ><%= campFind.description %></textarea>
+                    <div class="valid-feedback">
+                    Looks good!
+                  </div>
                 </div>
                 <div class="mb-3">
                     <label for="price">Price :</label>
                     <div class="input-group">
                         <span class="input-group-text">$</span>
-                        <input id="price" type="text" class="form-control" placeholder="0.00" name="Campground[price]" value="<%= campFind.price %>" >
+                        <input id="price" type="text" class="form-control" placeholder="0.00" name="Campground[price]" required  value="<%= campFind.price %>" >
+                        <div class="valid-feedback">
+                    Looks good!
+                  </div>
+
                     </div>
                   </div>
                 <div class="mb-3">
