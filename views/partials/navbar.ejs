@@ -9,6 +9,14 @@
           <a class="nav-link active" aria-current="page" href="/campgrounds">Home</a>
           <a class="nav-link" href="/campgrounds/new">Add New Campgrounds</a>
         </div>
+        <div class="navbar-nav ms-auto">
+          <% if (!currentUser) { %>
+          <a class="nav-link" href="/login">Log-in</a>
+          <a class="nav-link" href="/register">Register</a>
+          <% } else { %>
+          <a class="nav-link" href="/logout">Log-out</a>
+          <% } %>
+        </div>
       </div>
     </div>
   </nav>
