@@ -12,13 +12,16 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><%= campFind.location %></li>
               <li class="list-group-item">$<%= campFind.price %></li>
+              <li class="list-group-item">created by <small><%= campFind.author.username %></small></li>
             </ul>
+            <% if(currentUser && campFind.author.equals(currentUser._id)) { %>
             <div class="card-body" style="display: flex;">
                 <a class="card-link btn btn-warning" href="/campgrounds/<%= campFind._id %>/edit">Edit</a></br>
                 <form style="margin-left: 3px" class="d-inline" action="/campgrounds/<%= campFind._id %>?_method=DELETE" method="post">
                     <button class="btn btn-danger">Delete</button>
                 </form>
             </div>
+            <% } %>
           </div>
     </div>
     <div class="col-6">
@@ -35,6 +38,7 @@
       </form>
       <div class="mb-3">
         <h3>Lastest Feedbacks:</h3>
+        <% if(currentUser) { %>
         <% if(!campFind.reviews.length){ %>
           <div class="alert alert-danger" role="alert">
             There arn't Reviews yet!
@@ -45,13 +49,21 @@
             <div class="card-body">
               <h5 class="card-title">Rating ~ <%= review.rating %>/5</h5>
               <hr>
+              <h6 class="card-subtitle mb-2 text-body-secondary">by <%= review.author.username %></h6>
             <p class="card-text"><%= review.body %></p>
+            <% if(currentUser && review.author.equals(currentUser._id)) { %>
             <form action="/campgrounds/<%= campFind._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
             <button class="btn btn-sm btn-danger">x</button>
             </form>
+            <% } %>
             </div>
           </div>
           <% } %>
+          <% } else { %>
+            <div class="alert alert-danger" role="alert">
+              log-in to see the reviews
+            </div>
+            <% } %>
       </div>
     </div>
 </div>
