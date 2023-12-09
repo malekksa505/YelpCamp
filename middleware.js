@@ -1,6 +1,7 @@
 const {campgroundSchema, reviewSchema} = require('./schemas');
 const ExpressError = require('./utils/ExpressError');
 const Review = require('./models/review');
+const Camp = require('./models/campground')
 module.exports.isLoggedIn = (req,res,next) => {
     if(!req.isAuthenticated()) {
         req.flash('error', 'You must singed in first to do');
